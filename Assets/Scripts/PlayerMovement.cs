@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rb;
-    public float speed = 500;
+    public float speed;
     public float jumpVelocity = 100.0f;
     private Vector3 _inputs = Vector3.zero;
+    public float nextToWall;
     //private bool isGrounded;
 
 
@@ -16,12 +17,6 @@ public class PlayerMovement : MonoBehaviour
     { 
         rb = GetComponent<Rigidbody>();
     }
-
-    //void OnCollisionStay()
-    //{
-    //    isGrounded = true;
-    //    Debug.Log(isGrounded);
-    //}
 
     private void Update()
     {
@@ -44,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.velocity = Vector3.up * velocity;
-            //isGrounded = false;
         }
     }
 
@@ -54,7 +48,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(_inputs.x > 0.1f || _inputs.x < -0.1f)
         {
-            rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * _inputs);
+            //rb.MovePosition(rb.position + speed * Time.fixedDeltaTime * _inputs); // with this one it goes trough walls, don't know why
+            rb.velocity = new Vector3(_inputs.x * speed, rb.velocity.y);
         }
     }
 

@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
         isAgainstWall();
     }
 
-    public bool IsGrounded()
+    public bool IsGrounded()//checking if we are on ground to know if we can jump
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5)) 
         {
             return true;
         }
@@ -47,14 +47,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void isAgainstWall()// to change friction when player is against a wall so he doesnt stick to it.
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5)) 
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 3))// if player is on ground 
         {
-            _col.material.dynamicFriction = 1;
-            Debug.Log("Else");
+            _col.material.dynamicFriction = 1;//there is friction
         }
         else 
         {
-            _col.material.dynamicFriction = 0;
+            _col.material.dynamicFriction = 0;//else we make friction = nothing
         }
     }
 

@@ -423,8 +423,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625306189}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 24.68, y: 12.01, z: -0.59000003}
-  m_LocalScale: {x: 4.1645017, y: 1, z: 1}
+  m_LocalPosition: {x: 24.68, y: 13.08, z: -0.59000003}
+  m_LocalScale: {x: 6.3179655, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1271643006}
   m_RootOrder: 3
@@ -864,7 +864,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 24daf93514fdb0642a8c7d32f5481e51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -902,7 +902,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057996475}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.3, y: 26.1, z: -9.8}
+  m_LocalPosition: {x: -22, y: 38, z: -9.8}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -939,6 +939,7 @@ MonoBehaviour:
   speed: 100
   jumpVelocity: 105
   nextToWall: 5
+  slippery: {fileID: 0}
 --- !u!114 &2057996482
 MonoBehaviour:
   m_ObjectHideFlags: 0

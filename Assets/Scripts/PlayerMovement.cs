@@ -9,19 +9,22 @@ public class PlayerMovement : MonoBehaviour
     public float jumpVelocity = 100.0f;
     private Vector3 _inputs = Vector3.zero;
     public float nextToWall;
-    //private bool isGrounded;
+    BoxCollider _col;
+    public PhysicMaterial slippery;
 
 
     // Start is called before the first frame update
     void Start()
     { 
         rb = GetComponent<Rigidbody>();
+        _col = gameObject.GetComponent<BoxCollider>();
     }
 
     private void Update()
     {
         _inputs.x = Input.GetAxis("Horizontal");
         Jump(jumpVelocity);
+        isAgainstWall();
     }
 
     public bool IsGrounded()
@@ -39,6 +42,19 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             rb.velocity = Vector3.up * velocity;
+        }
+    }
+
+    private void isAgainstWall()// to change friction when player is against a wall so he doesnt stick to it.
+    {
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5)) 
+        {
+            _col.material.dynamicFriction = 1;
+            Debug.Log("Else");
+        }
+        else 
+        {
+            _col.material.dynamicFriction = 0;
         }
     }
 

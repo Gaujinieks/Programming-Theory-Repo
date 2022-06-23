@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void isAgainstWall()// to change friction when player is against a wall so he doesnt stick to it.
     {
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 3))// if player is on ground 
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5))// if player is on ground 
         {
             _col.material.dynamicFriction = 1;//there is friction
         }

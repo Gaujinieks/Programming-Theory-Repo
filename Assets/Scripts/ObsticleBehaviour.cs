@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ObsticleBehaviour : PowerUpController // override collision and rotation.
 {
+    public bool gameOver = false;
+
     // Start is called before the first frame update
     void Start()
     {
+        SoundEffect = GetComponent<AudioSource>();
         PosOffset = transform.position;
     }
 
@@ -24,9 +27,8 @@ public class ObsticleBehaviour : PowerUpController // override collision and rot
 
     public override void OnCollisionEnter(Collision collision)
     {
+        SoundEffect.Play();
         Destroy(collision.gameObject);// destroy player instead of other object
+        gameOver = true;
     }
-
-
-
 }

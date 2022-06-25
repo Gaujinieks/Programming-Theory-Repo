@@ -10,6 +10,7 @@ public class PowerUpController : MonoBehaviour
     private Vector3 posOffset = new Vector3();
     private Vector3 tempPos = new Vector3();
     private AudioSource soundEffect;
+    public GameManager gameManager;
 
 
     public Vector3 PosOffset// just to learn getters and setters.
@@ -29,6 +30,7 @@ public class PowerUpController : MonoBehaviour
     {
         SoundEffect = GetComponent<AudioSource>();
         PosOffset = transform.position;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -52,9 +54,10 @@ public class PowerUpController : MonoBehaviour
 
     public virtual void OnCollisionEnter(Collision collision)//play sound then disable renderer and collision body, then destroy.
     {
-            SoundEffect.Play();
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-            gameObject.GetComponent<BoxCollider>().enabled = false;
-            Destroy(gameObject, 1f);
+        SoundEffect.Play();
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        Destroy(gameObject, 1f);
+        gameManager.coinAmount++;
     }
 }

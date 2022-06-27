@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _inputs.x = Input.GetAxis("Horizontal");
         Jump(jumpVelocity);
-        isAgainstWall();
+        IsAgainstWall();
     }
 
     public bool IsGrounded()//checking if we are on ground to know if we can jump
@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void isAgainstWall()// to change friction when player is against a wall so he doesnt stick to it.
+    private void IsAgainstWall()// to change friction when player is against a wall so he doesnt stick to it.
     {
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 5))// if player is on ground 
         {

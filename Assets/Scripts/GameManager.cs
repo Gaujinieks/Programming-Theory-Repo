@@ -7,36 +7,49 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public TMP_Text gameOver;
-    public TMP_Text winMessage;
     public bool isGameOver = false;
     public int coinAmount;
     private GameObject player;
+    private AudioSource audianceCheering;
+    private bool levelFinished = false;
 
     private void Start()
     {
         this.player = GameObject.FindWithTag("Player");// to get player game object
+        audianceCheering = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        GameState();
+    }
+    // ABSTRACTION >>
+    private void GameState()
     {
         if (isGameOver || !this.player)
         {
             GameOver();
         }
 
-        if (coinAmount == 5)
+        if (coinAmount == 5 && !audianceCheering.isPlaying && !levelFinished)
         {
-            winMessage.gameObject.SetActive(true);
+            audianceCheering.Play();
             this.player.SetActive(false);
+            levelFinished = true;
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             RestartGame();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(0);
+        }
 
     }
+    // ABSTRACTION <<
 
     public void GameOver()
     {
@@ -46,7 +59,7 @@ public class GameManager : MonoBehaviour
     private void RestartGame()
     {
         gameOver.gameObject.SetActive(false);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         isGameOver = false;
     }
 }
